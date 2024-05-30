@@ -1,0 +1,169 @@
+{
+  "Products": [
+    {
+      "product": {
+        "name": "Taragüi Traditional Yerba Mate",
+        "brand": "Taragüi",
+        "type": "Traditional",
+        "description": "A traditional yerba mate blend, perfect for mate enthusiasts.",
+        "weight": "500g",
+        "price": 10.99,
+        "image": "/images/taragui_traditional.webp"
+      }
+    },
+    {
+      "product": {
+        "name": "Rosamonte Especial Yerba Mate",
+        "brand": "Rosamonte",
+        "type": "Especial",
+        "description": "A premium yerba mate blend with a smooth and rich flavor.",
+        "weight": "1kg",
+        "price": 15.99,
+        "image": "/images/rosamonte_especial.webp"
+      }
+    },
+    {
+      "product": {
+        "name": "Playadito Organic Yerba Mate",
+        "brand": "Playadito",
+        "type": "Organic",
+        "description": "Certified organic yerba mate, sustainably sourced for a pure experience.",
+        "weight": "250g",
+        "price": 12.49,
+        "image": "/images/playadito_organic.webp"
+      }
+    },
+    {
+      "product": {
+        "name": "La Merced Barbacuá Yerba Mate",
+        "brand": "La Merced",
+        "type": "Barbacuá",
+        "description": "A unique yerba mate blend, dried using traditional barbacuá methods for a smoky flavor.",
+        "weight": "500g",
+        "price": 11.79,
+        "image": "/images/la_merced_barbacua.png"
+      }
+    },
+    {
+      "product": {
+        "name": "Cruz de Malta Lemon Yerba Mate",
+        "brand": "Cruz de Malta",
+        "type": "Lemon",
+        "description": "Yerba mate infused with zesty lemon flavor, perfect for refreshing mate drinks.",
+        "weight": "1kg",
+        "price": 14.99,
+        "image": "/images/cruz_de_malta_lemon.png"
+      }
+    },
+    {
+      "product": {
+        "name": "Union Suave Yerba Mate",
+        "brand": "Union",
+        "type": "Suave",
+        "description": "A smooth and gentle yerba mate blend, ideal for beginners or those sensitive to bitterness.",
+        "weight": "500g",
+        "price": 10.29,
+        "image": "/images/union_suave.webp"
+      }
+    },
+    {
+      "product": {
+        "name": "Amanda Mint Yerba Mate",
+        "brand": "Amanda",
+        "type": "Mint",
+        "description": "Yerba mate combined with refreshing mint leaves, perfect for a revitalizing drink.",
+        "weight": "250g",
+        "price": 13.49,
+        "image": "/images/amanda_mint.png"
+      }
+    },
+    {
+      "product": {
+        "name": "Nobleza Gaucha Yerba Mate",
+        "brand": "Nobleza Gaucha",
+        "type": "Traditional",
+        "description": "A classic yerba mate blend with a bold and authentic flavor.",
+        "weight": "1kg",
+        "price": 16.99,
+        "image": "/images/nobleza_gaucha.png"
+      }
+    },
+    {
+      "product": {
+        "name": "Santo Pipó Orange Yerba Mate",
+        "brand": "Santo Pipó",
+        "type": "Orange",
+        "description": "Yerba mate infused with tangy orange flavor, for a citrusy twist on traditional mate.",
+        "weight": "500g",
+        "price": 11.99,
+        "image": "/images/santo_pipo_orange.png"
+      }
+    },
+    {
+      "product": {
+        "name": "La Tranquera Yerba Mate",
+        "brand": "La Tranquera",
+        "type": "Traditional",
+        "description": "A smooth and balanced traditional yerba mate blend, perfect for everyday enjoyment.",
+        "weight": "1kg",
+        "price": 14.79,
+        "image": "/images/la_tranquera.webp"
+      }
+    },
+    {
+      "product": {
+        "name": "Indega Yerba Mate",
+        "brand": "Indega",
+        "type": "Traditional",
+        "description": "A high-quality yerba mate blend, crafted for a rich and robust flavor profile.",
+        "weight": "500g",
+        "price": 12.99,
+        "image": "/images/indega.jpg"
+      }
+    },
+    {
+      "product": {
+        "name": "CBSe Energia Yerba Mate",
+        "brand": "CBSe",
+        "type": "Energia",
+        "description": "Yerba mate infused with natural energy-boosting ingredients, for a revitalizing drink.",
+        "weight": "250g",
+        "price": 13.99,
+        "image": "/images/cbse_energia.webp"
+      }
+    },
+    {
+      "product": {
+        "name": "Colon Compuesta Con Palo Yerba Mate",
+        "brand": "Colon",
+        "type": "Compuesta con Palo",
+        "description": "Yerba mate blend with added stems for a traditional South American taste.",
+        "weight": "500g",
+        "price": 10.79,
+        "image": "/images/colon_compuesta_con_palo.webp"
+      }
+    },
+    {
+      "product": {
+        "name": "Canarias Serena Yerba Mate",
+        "brand": "Canarias",
+        "type": "Serena",
+        "description": "A smooth and gentle yerba mate blend, perfect for relaxed drinking sessions.",
+        "weight": "1kg",
+        "price": 15.49,
+        "image": "/images/canarias_serena.webp"
+      }
+    },
+    {
+      "product": {
+        "name": "Pajarito Yerba Mate",
+        "brand": "Pajarito",
+        "type": "Traditional",
+        "description": "A classic Paraguayan yerba mate blend, known for its bold flavor and rich aroma.",
+        "weight": "500g",
+        "price": 11.29,
+        "image": "/images/pajarito.webp"
+      }
+    }
+  ]
+}
