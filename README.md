@@ -33,6 +33,7 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
 ### Prerequisites
 
 - Node.js (>= 14.x)
+- PHP (>= 8.x)
 - npm (>= 6.x) or yarn (>= 1.x)
 
 ### Installation
