@@ -4,21 +4,12 @@ import MDLogo from "../public/mate-and-dragons-logo-horizontal.png";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/ui/toggle-theme";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingCart } from "lucide-react";
+import { CircleX, Heart, ShoppingCart } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
-import { DialogDemo } from "@/components/dialog-demo";
-
-interface Product {
-  id: number;
-  name: string;
-  brand: string;
-  type: string;
-  weight: number;
-  description: string;
-  price: number;
-  stock: number;
-  image_url: string;
-}
+import { DialogDemo } from "@/components/dialog-products";
+import Users from "@/components/users";
+import { DialogProductsEdit } from "@/components/dialog-products-edit";
+import {Product} from "../types/types"
 
 const UniqueSelects = ({
   onTypeChange,
@@ -31,17 +22,17 @@ const UniqueSelects = ({
   selectedType: string;
   selectedBrand: string;
 }) => {
-  const [data, setData] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost/mateanddragons/api.php")
+    fetch("http://localhost/mateanddragons/api-products.php")
       .then((response) => response.json())
-      .then((data) => setData(data))
+      .then((data) => setProducts(data))
       .catch((error) => console.error("Error:", error));
   }, []);
 
-  const uniqueTypes = Array.from(new Set(data.map((item) => item.type)));
-  const uniqueBrands = Array.from(new Set(data.map((item) => item.brand)));
+  const uniqueTypes = Array.from(new Set(products.map((item) => item.type)));
+  const uniqueBrands = Array.from(new Set(products.map((item) => item.brand)));
 
   return (
     <div className="flex gap-4 mb-4">
@@ -69,7 +60,7 @@ const UniqueSelects = ({
           value={selectedBrand}
           className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 col-span-3"
         >
-          <option value="" className="">All</option>
+          <option value="">All</option>
           {uniqueBrands.map((brand) => (
             <option key={brand} value={brand}>
               {brand}
@@ -82,28 +73,56 @@ const UniqueSelects = ({
 };
 
 export default function Home() {
-  const [Search, setSearch] = useState("");
-  const [type, setType] = useState("");
-  const [brand, setBrand] = useState("");
-  const [data, setData] = useState<Product[]>([]);
+  const [search, setSearch] = useState("");
+  const [typeFiltered, setTypeFiltered] = useState("");
+  const [brandFiltered, setBrandFiltered] = useState("");
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost/mateanddragons/api.php")
+    fetch("http://localhost/mateanddragons/api-products.php")
       .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error("Error:", error));
+      .then((data) => setProducts(data))
+      .catch((error) =>
+        console.error("Error al obtener los productos:", error)
+      );
   }, []);
 
-  const matches = useMemo(() => {
-    return data.filter((Product) => {
-      const matchesType = type === "" || Product.type === type;
-      const matchesBrand = brand === "" || Product.brand === brand;
-      const matchesSearch = Product.name
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchesType = typeFiltered === "" || product.type === typeFiltered;
+      const matchesBrand =
+        brandFiltered === "" || product.brand === brandFiltered;
+      const matchesSearch = product.name
         .toLowerCase()
-        .includes(Search.toLowerCase());
+        .includes(search.toLowerCase());
       return matchesType && matchesSearch && matchesBrand;
     });
-  }, [type, Search, brand, data]);
+  }, [typeFiltered, search, brandFiltered, products]);
+
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await fetch(
+        "http://localhost/mateanddragons/api-products.php",
+        {
+          method: "DELETE",
+          body: `id=${id}`,
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        alert("Producto eliminado exitosamente");
+        setProducts((prevData) =>
+          prevData.filter((product) => product.id !== id)
+        );
+      } else {
+        alert("Error: " + data.error);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al eliminar el producto");
+    }
+  };
 
   return (
     <>
@@ -119,7 +138,7 @@ export default function Home() {
             placeholder="Search"
             type="search"
             className="w-[650px] focus-visible:ring-0"
-            value={Search}
+            value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <nav className="flex items-center justify-between">
@@ -136,34 +155,46 @@ export default function Home() {
         <section className="my-10">
           <div className="flex justify-between mb-10">
             <UniqueSelects
-              onTypeChange={(e) => setType(e.target.value)}
-              onBrandChange={(e) => setBrand(e.target.value)}
-              selectedType={type}
-              selectedBrand={brand}
+              onTypeChange={(e) => setTypeFiltered(e.target.value)}
+              onBrandChange={(e) => setBrandFiltered(e.target.value)}
+              selectedType={typeFiltered}
+              selectedBrand={brandFiltered}
             />
             <DialogDemo />
           </div>
           <ul className="grid grid-cols-4 gap-4">
-            {matches.map((Product) => (
-              <li key={Product.id} className="mb-5 cursor-pointer">
+            {filteredProducts.map((product) => (
+              <li key={product.id} className="mb-5 cursor-pointer relative">
                 <div
                   className="relative w-full"
                   style={{ paddingBottom: "75%" }}
                 >
                   <Image
-                    src={`http://localhost/mateanddragons/${Product.image_url}`}
-                    alt={Product.name}
+                    src={`http://localhost/mateanddragons/${product.image_url}`}
+                    alt={product.name}
                     layout="fill"
                     className="object-contain"
                   />
                 </div>
-                <h2 className="text-center capitalize">{Product.name}</h2>
-                <p className="text-center">${Product.price}</p>
-                <p className="text-center">{Product.weight}</p>
+                <h2 className="text-center capitalize">{product.name}</h2>
+                <p className="text-center">${product.price}</p>
+                <p className="text-center">{product.weight}</p>
+
+                <div className="absolute top-0 right-0 flex items-center gap-2">
+                  <DialogProductsEdit products={product} />
+                  <Button
+                    onClick={() => handleDelete(product.id)}
+                    className="bg-red-500 hover:bg-red-700"
+                  >
+                    <CircleX className="w-6 h-6" />
+                  </Button>
+                </div>
               </li>
             ))}
           </ul>
         </section>
+
+        <Users />
       </main>
     </>
   );

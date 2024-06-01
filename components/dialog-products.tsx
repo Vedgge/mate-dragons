@@ -20,7 +20,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Textarea } from "./ui/textarea";
 
 const brands = [
@@ -80,8 +79,6 @@ export function DialogDemo() {
   const [stock, setStock] = useState("");
   const [image, setImage] = useState<File | null>(null);
 
-  const router = useRouter();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData();
@@ -96,27 +93,39 @@ export function DialogDemo() {
       formData.append("image", image);
     }
 
-    const response = await fetch("http://localhost/mateanddragons/api.php", {
-      method: "POST",
-      body: formData,
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
     });
+    try {
+      const response = await fetch(
+        "http://localhost/mateanddragons/api-products.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
-    const data = await response.json();
-    if (data.success) {
-      alert("Producto creado exitosamente");
-      router.push("/");
-    } else {
-      alert("Error: " + data.error);
+      const data = await response.json();
+      if (data.success) {
+        alert("Producto creado exitosamente");
+        // window.location.reload();
+      } else {
+        alert("Error: " + data.error);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error al subir el producto");
     }
   };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add a new product</Button>
+        <Button variant="outline">Agregar un nuevo producto</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Alta de producto</DialogTitle>
+          <DialogTitle>Agregar un nuevo producto</DialogTitle>
           <DialogDescription>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </DialogDescription>
@@ -124,21 +133,18 @@ export function DialogDemo() {
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div>
-              <Label htmlFor="name">
-                Name
-              </Label>
+              <Label htmlFor="name">Nombre del producto</Label>
               <Input
                 type="text"
                 value={name}
+                placeholder="Ingrese el nombre del producto"
                 onChange={(e) => setName(e.target.value)}
                 className="col-span-3"
                 required
               />
             </div>
             <div>
-              <Label htmlFor="brand">
-                Marca:
-              </Label>
+              <Label htmlFor="brand">Marca:</Label>
               <Select onValueChange={(value) => setBrand(value)} required>
                 <SelectTrigger className="col-span-3">
                   <SelectValue placeholder="Seleccione una marca" />
@@ -161,7 +167,7 @@ export function DialogDemo() {
               </Label>
               <Select onValueChange={(value) => setType(value)} required>
                 <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Seleccione una marca" />
+                  <SelectValue placeholder="Seleccione un tipo" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
@@ -200,6 +206,7 @@ export function DialogDemo() {
                 Descripción:
               </Label>
               <Textarea
+                placeholder="Descripción del producto"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -210,6 +217,8 @@ export function DialogDemo() {
               </Label>
               <Input
                 type="number"
+                min={0}
+                placeholder="0"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 required
@@ -221,6 +230,8 @@ export function DialogDemo() {
               </Label>
               <Input
                 type="number"
+                min={0}
+                placeholder="0"
                 value={stock}
                 onChange={(e) => setStock(e.target.value)}
                 required
@@ -234,11 +245,12 @@ export function DialogDemo() {
                 type="file"
                 onChange={(e) => setImage(e.target.files?.[0] || null)}
                 required
+                className="cursor-pointer"
               />
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit">Agregar producto</Button>
           </DialogFooter>
         </form>
       </DialogContent>

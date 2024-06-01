@@ -29,10 +29,13 @@ export default function AddProducts() {
       formData.append("image", image);
     }
 
-    const response = await fetch("http://localhost/mateanddragons/api.php", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      "http://localhost/mateanddragons/api-products.php",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     const data = await response.json();
     if (data.success) {
@@ -124,7 +127,13 @@ export default function AddProducts() {
         </div>
         <div>
           <label>Peso:</label>
-          <select name="weight" id="weight" value={weight} onChange={(e) => setWeight(e.target.value)} required>
+          <select
+            name="weight"
+            id="weight"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            required
+          >
             <option value="250g">250g</option>
             <option value="500g">500g</option>
             <option value="1kg">1kg</option>
