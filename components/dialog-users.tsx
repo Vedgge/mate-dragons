@@ -24,19 +24,20 @@ import { useState } from "react";
 export function DialogUsers() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
+    formData.append("email", email);
     formData.append("role", role);
 
     try {
       const response = await fetch(
-        "http://localhost/mateanddragons/api-users.php",
+        "http://localhost/mateanddragons/index-users.php",
         {
           method: "POST",
           body: formData,
@@ -51,7 +52,7 @@ export function DialogUsers() {
         alert("Error: " + data.error);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
       alert("Error al crear el usuario");
     }
   };
@@ -93,9 +94,20 @@ export function DialogUsers() {
               />
             </div>
             <div>
+              <Label htmlFor="email" className="text-right">
+                Email
+              </Label>
+              <Input
+                id="email"
+                placeholder="Ingrese el email del usuario"
+                className="col-span-3"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
               {/* {isUserAdming ? (
    <> */}
-              <Label htmlFor="admin" className="text-right">
+              <Label htmlFor="role" className="text-right">
                 Roles
               </Label>
               <Select onValueChange={(value) => setRole(value)} required>

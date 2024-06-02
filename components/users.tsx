@@ -4,14 +4,13 @@ import { DialogUsers } from "./dialog-users";
 import { TableUsers } from "./table-users";
 import { User } from "../types/types";
 
-
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
   const [roleFiltered, setRoleFiltered] = useState<string>("");
   const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
-    fetch("http://localhost/mateanddragons/api-users.php")
+    fetch("http://localhost/mateanddragons/index-users.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error en la red");
@@ -28,9 +27,9 @@ export default function Users() {
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
       const matchesType = roleFiltered === "" || user.role === roleFiltered;
-      const matchesSearch = user.username
-        .toLowerCase()
-        .includes(search.toLowerCase());
+      const matchesSearch =
+        user.username.toLowerCase().includes(search.toLowerCase()) ||
+        user.email.toLowerCase().includes(search.toLowerCase());
       return matchesType && matchesSearch;
     });
   }, [roleFiltered, search, users]);
@@ -46,16 +45,16 @@ export default function Users() {
             onChange={(e) => setRoleFiltered(e.target.value)}
             className="flex h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 col-span-3 w-[200px]"
           >
-            <option value="">All</option>
+            <option value="">Todos los roles</option>
             <option value="admin">Admin</option>
             <option value="user">User</option>
           </select>
           <Input
             type="text"
-            placeholder="Search"
+            placeholder="Busca por username o email"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-[200px]"
+            className="w-fit"
           />
         </div>
         <DialogUsers />

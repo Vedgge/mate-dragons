@@ -96,9 +96,10 @@ export function DialogDemo() {
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
+
     try {
       const response = await fetch(
-        "http://localhost/mateanddragons/api-products.php",
+        "http://localhost/mateanddragons/index-products.php",
         {
           method: "POST",
           body: formData,
@@ -108,7 +109,7 @@ export function DialogDemo() {
       const data = await response.json();
       if (data.success) {
         alert("Producto creado exitosamente");
-        // window.location.reload();
+        window.location.reload();
       } else {
         alert("Error: " + data.error);
       }

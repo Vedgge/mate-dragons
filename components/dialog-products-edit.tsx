@@ -104,7 +104,7 @@ export const DialogProductsEdit = ({ products }: DialogProductsEditProps) => {
 
     try {
       const response = await fetch(
-        "http://localhost/mateanddragons/api-products.php",
+        "http://localhost/mateanddragons/index-products.php",
         {
           method: "PUT",
           headers: {

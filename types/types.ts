@@ -14,6 +14,7 @@ export interface User {
   id: number;
   username: string;
   password: string;
+  email: string;
   role: string;
 }
 
@@ -22,5 +23,11 @@ export interface Cart {
   user_id: number;
   product_id: number;
   quantity: number;
+}
+
+export interface Favorite {
+  id: number;
+  user_id: number;
+  product_id: number;
 }
 

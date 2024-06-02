@@ -9,7 +9,7 @@ import { useState, useMemo, useEffect } from "react";
 import { DialogDemo } from "@/components/dialog-products";
 import Users from "@/components/users";
 import { DialogProductsEdit } from "@/components/dialog-products-edit";
-import {Product} from "../types/types"
+import { Product } from "../types/types";
 
 const UniqueSelects = ({
   onTypeChange,
@@ -25,7 +25,7 @@ const UniqueSelects = ({
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost/mateanddragons/api-products.php")
+    fetch("http://localhost/mateanddragons/index-products.php")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error:", error));
@@ -44,7 +44,7 @@ const UniqueSelects = ({
           value={selectedType}
           className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 col-span-3"
         >
-          <option value="">All</option>
+          <option value="">Todos los tipos</option>
           {uniqueTypes.map((type) => (
             <option key={type} value={type}>
               {type}
@@ -60,7 +60,7 @@ const UniqueSelects = ({
           value={selectedBrand}
           className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 col-span-3"
         >
-          <option value="">All</option>
+          <option value="">Todas las marcas</option>
           {uniqueBrands.map((brand) => (
             <option key={brand} value={brand}>
               {brand}
@@ -79,8 +79,13 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost/mateanddragons/api-products.php")
-      .then((response) => response.json())
+    fetch("http://localhost/mateanddragons/index-products.php")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => setProducts(data))
       .catch((error) =>
         console.error("Error al obtener los productos:", error)
@@ -102,7 +107,7 @@ export default function Home() {
   const handleDelete = async (id: number) => {
     try {
       const response = await fetch(
-        "http://localhost/mateanddragons/api-products.php",
+        "http://localhost/mateanddragons/index-products.php",
         {
           method: "DELETE",
           body: `id=${id}`,
@@ -137,9 +142,9 @@ export default function Home() {
           <Input
             placeholder="Search"
             type="search"
-            className="w-[650px] focus-visible:ring-0"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            className="w-[650px] focus-visible:ring-0"
           />
           <nav className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -193,8 +198,9 @@ export default function Home() {
             ))}
           </ul>
         </section>
-
-        <Users />
+        <div className="mb-6">
+          <Users />
+        </div>
       </main>
     </>
   );
