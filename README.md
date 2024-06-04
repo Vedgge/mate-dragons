@@ -1,6 +1,6 @@
 # Mate & Dragons - E-commerce Yerba Mate Platform
 
-![Mate & Dragons Logo](./public/mate-and-dragons-logo-horizontal.png)
+![Mate & Dragons Logo](./frontend/public/mate-and-dragons-logo-horizontal.png)
 
 ## Description
 
