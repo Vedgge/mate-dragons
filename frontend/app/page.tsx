@@ -5,12 +5,13 @@ import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/ui/toggle-theme";
 import { Button } from "@/components/ui/button";
 import { CircleX, Heart, ShoppingCart } from "lucide-react";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useContext } from "react";
 import { PopupProductsAdd } from "@/components/popup-products-add";
 import Users from "@/components/users";
 import { PopupProductsEdit } from "@/components/popup-products-edit";
 import { Product } from "../types/types";
 import { DropdownMenuLogin } from "@/components/dropdown-login";
+import { AuthContext } from "@/context/AuthContext";
 
 const UniqueSelects = ({
   onTypeChange,
@@ -79,6 +80,10 @@ export default function Home() {
   const [brandFiltered, setBrandFiltered] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
 
+
+    const { role } = useContext(AuthContext);
+    const isAdmin = role === "admin";
+
   useEffect(() => {
     fetch("http://localhost:8000/api/products")
       .then((response) => {
@@ -146,7 +151,7 @@ export default function Home() {
           />
           <nav className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <DropdownMenuLogin/>
+              <DropdownMenuLogin />
               <Heart className="w-6 h-6" />
               <ShoppingCart className="w-6 h-6" />
               <ModeToggle />
@@ -163,7 +168,7 @@ export default function Home() {
               selectedType={typeFiltered}
               selectedBrand={brandFiltered}
             />
-            <PopupProductsAdd />
+            {isAdmin && <PopupProductsAdd />}
           </div>
           <ul className="grid grid-cols-4 gap-4">
             {filteredProducts.map((product) => (
@@ -183,14 +188,22 @@ export default function Home() {
                 <p className="text-center">${product.price}</p>
                 <p className="text-center">{product.weight}</p>
 
-                <div className="absolute top-0 right-0 flex items-center gap-2">
-                  <PopupProductsEdit products={product} />
-                  <Button
-                    onClick={() => handleDelete(product.id)}
-                    className="bg-red-500 hover:bg-red-700"
-                  >
-                    <CircleX className="w-6 h-6" />
-                  </Button>
+                <div className="absolute top-0 right-0">
+                  {isAdmin ? (
+                    <div className="flex items-center gap-2">
+                      <PopupProductsEdit products={product} />
+                      <Button
+                        onClick={() => handleDelete(product.id)}
+                        className="bg-red-500 hover:bg-red-700"
+                      >
+                        <CircleX className="w-6 h-6" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <Heart />
+                    </div>
+                  )}
                 </div>
               </li>
             ))}

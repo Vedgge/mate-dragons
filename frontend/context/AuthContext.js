@@ -1,10 +1,11 @@
+"use client"
 import React, { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [role, setRole] = useState("user");
+  const [role, setRole] = useState("admin");
 
   const login = (newRole) => {
     setIsAuthenticated(true);

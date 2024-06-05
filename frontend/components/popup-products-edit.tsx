@@ -83,8 +83,8 @@ export const PopupProductsEdit = ({ products }: PopupProductsEditProps) => {
   const [description, setDescription] = useState(products.description);
   const [price, setPrice] = useState(products.price);
   const [stock, setStock] = useState(products.stock);
-  const [image, setImage] = useState(products.image_url);
-  const [newImage, setNewImage] = useState<File | null>(null);
+  // const [image, setImage] = useState(products.image_url);
+  // const [newImage, setNewImage] = useState<File | null>(null);
 
   const handleEditProduct = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -81,22 +81,22 @@ export function PopupProductsAdd() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("brand", brand);
-    formData.append("type", type);
-    formData.append("weight", weight); // Convertir a cadena
-    formData.append("description", description);
-    formData.append("price", price.toString()); // Convertir a cadena
-    formData.append("stock", stock.toString()); // Convertir a cadena
+    const formDataProduct = new FormData();
+    formDataProduct.append("name", name);
+    formDataProduct.append("brand", brand);
+    formDataProduct.append("type", type);
+    formDataProduct.append("weight", weight); 
+    formDataProduct.append("description", description);
+    formDataProduct.append("price", price.toString()); // Convertir a cadena
+    formDataProduct.append("stock", stock.toString()); // Convertir a cadena
     if (image) {
-      formData.append("image", image);
+      formDataProduct.append("image", image);
     }
 
     try {
       const response = await fetch("http://localhost:8000/api/products", {
         method: "POST",
-        body: formData,
+        body: formDataProduct,
         headers: {
           Accept: "application/json",
         },
