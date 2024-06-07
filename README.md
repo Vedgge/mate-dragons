@@ -73,18 +73,18 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
    ```bash
    cd ../backend
    composer install
-5. Run the Database migrations from the Backend
+5. Run XAMPP (Apache + MySQL) and ensure the MySQL server is running.
+6. Run the Database migrations from the Backend
    ```bash
    symfony console doctrine:migrations:migrate
-6. Run the Development FrontEnd Server in the 'frontend' folder
+7. Run the Development FrontEnd Server in the 'frontend' folder
    ```bash
    cd frontend
    npm run dev
-7. Run the Development BackEnd Server in the 'backend' folder
+8. Run the Development BackEnd Server in the 'backend' folder
    ```bash
    cd ../backend
    symfony server:start
-8. Run XAMPP (Apache + MySQL) and ensure the MySQL server is running.
 
 ### Usage
 
