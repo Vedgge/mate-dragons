@@ -14,7 +14,7 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
 - **Responsive Design:** Optimized for both desktop and mobile devices (TBI).
 - **Theme Toggle:** Switch between light and dark modes.
 - **User Authentication:** Basic login functionality with JWT-based authentication.
-- **Favorites and Cart:** Add products to favorites and shopping cart.
+- **Favorites and Cart:** Add products to favorites and shopping cart (TBI).
 - **User Management:** Admin can manage users, including creating, updating, and deleting users.
 - **Product Management:** Admin can manage products, including creating, updating, and deleting them.
 - **Security:** Protected routes and secure password storage.
