@@ -69,10 +69,11 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
    npm install
    # or
    yarn install
-3. Install the backend dependencies
+3. Install the backend dependencies (you may have to use composer update and add --ignore-platform-req=ext-sodium)
    ```bash
    cd ../backend
    composer install
+4. Run XAMPP (Apache + MySQL) and ensure the MySQL server is running.
 5. Run the Database migrations from the Backend
    ```bash
    symfony console doctrine:migrations:migrate
@@ -84,7 +85,6 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
    ```bash
    cd ../backend
    symfony server:start
-8. Run XAMPP (Apache + MySQL) and ensure the MySQL server is running.
 
 ### Usage
 
