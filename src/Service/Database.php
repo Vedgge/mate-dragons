@@ -11,6 +11,7 @@ class Database
     public function __construct($dsn, $user, $password)
     {
         $options = [
+            // Configuración de la conexión PDO
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ];

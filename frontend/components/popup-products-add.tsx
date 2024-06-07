@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Textarea } from "./ui/textarea";
+import toast, { Toaster } from "react-hot-toast";
 
 const brands = [
   "Taragüi",
@@ -104,14 +105,18 @@ export function PopupProductsAdd() {
 
       const data = await response.json();
       if (response.ok) {
-        alert("Producto creado exitosamente");
-        window.location.reload();
+        // alert("Producto creado exitosamente");
+        toast.success("Producto creado exitosamente");
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       } else {
         alert("Error: " + data.error);
       }
     } catch (error) {
       console.error(error);
-      alert("Error al subir el producto");
+      // alert("Error al subir el producto");
+      toast.error("Error al subir el producto");
     }
   };
 

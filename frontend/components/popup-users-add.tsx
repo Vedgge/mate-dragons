@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export function PopupUsersAdd() {
   const [username, setUsername] = useState("");
@@ -43,14 +44,18 @@ export function PopupUsersAdd() {
 
       const data = await response.json();
       if (data.success) {
-        alert("Usuario creado exitosamente");
-        window.location.reload();
+        // alert("Usuario creado exitosamente");
+        toast.success("Usuario creado exitosamente", { duration: 5000 });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       } else {
         alert("Error: " + data.error);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error al crear el usuario");
+      // alert("Error al crear el usuario");
+      toast.error("Error al crear el usuario");
     }
   };
 

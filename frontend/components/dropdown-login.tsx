@@ -6,25 +6,34 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "./ui/input";
 import { AuthContext } from "@/context/AuthContext";
+import toast from "react-hot-toast";
 
 export function DropdownMenuLogin() {
   const { login } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleLogin = async () => {
-    await login(username, password);
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      await login(username, password);
+      setError(""); // Limpiar errores previos del useState
+    } catch (error: any) {
+      setError(error.message);
+      // alert("Error al iniciar sesión: " + error.name + error.message);
+      toast.error("Error al iniciar sesión" + error.name + error.message)
+      
+    }
   };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -37,18 +46,23 @@ export function DropdownMenuLogin() {
           <DropdownMenuGroup className="flex flex-col gap-4">
             <Input
               id="username"
-              name="username" // Ensure this matches the name expected in handleLogin
+              name="username"
               type="text"
               placeholder="Ingrese el nombre del usuario o email"
               className="col-span-3 focus:outline-none"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <Input
               id="password"
-              name="password" // Ensure this matches the name expected in handleLogin
+              name="password"
               type="password"
               placeholder="Ingrese su contraseña"
               className="col-span-3"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
+            {error && <p className="text-red-500">{error}</p>}
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <button

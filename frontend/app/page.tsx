@@ -12,6 +12,7 @@ import { PopupProductsEdit } from "@/components/popup-products-edit";
 import { Product } from "../types/types";
 import { DropdownMenuLogin } from "@/components/dropdown-login";
 import { AuthContext } from "@/context/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const UniqueSelects = ({
   onTypeChange,
@@ -80,9 +81,7 @@ export default function Home() {
   const [brandFiltered, setBrandFiltered] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
 
-
-    const { role } = useContext(AuthContext);
-    const isAdmin = role === "admin";
+  const { role, logout, decodedToken } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/products")
@@ -119,21 +118,24 @@ export default function Home() {
 
       const data = await response.json();
       if (data.success) {
-        alert("Producto eliminado exitosamente");
+        // alert("Producto eliminado exitosamente");
+        toast.success("Producto eliminado exitosamente!");
         setProducts((prevData) =>
           prevData.filter((product) => product.id !== id)
         );
       } else {
-        alert("Error: " + data.error);
+        // alert("Error: " + data.error);
+        toast.error("Error al eliminar el producto: " + data.error);
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("Error al eliminar el producto");
+      // console.error("Error:", error);
+      toast.error("Error al eliminar el producto: " + error);
     }
   };
 
   return (
     <>
+      <Toaster />
       <header className="border p-4">
         <div className="flex items-center justify-between w-[1420px] mx-auto">
           <Image
@@ -151,7 +153,23 @@ export default function Home() {
           />
           <nav className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <DropdownMenuLogin />
+              {role === null && (
+                <div>
+                  <DropdownMenuLogin />
+                </div>
+              )}
+              {role === "admin" && (
+                <div className="flex items-center gap-4">
+                  <h2>{decodedToken.username}</h2>
+                  <Button onClick={logout}>Logout</Button>
+                </div>
+              )}
+              {role === "user" && (
+                <div className="flex items-center gap-4">
+                  <h2>{decodedToken.username}</h2>
+                  <Button onClick={logout}>Logout</Button>
+                </div>
+              )}
               <Heart className="w-6 h-6" />
               <ShoppingCart className="w-6 h-6" />
               <ModeToggle />
@@ -168,7 +186,7 @@ export default function Home() {
               selectedType={typeFiltered}
               selectedBrand={brandFiltered}
             />
-            {isAdmin && <PopupProductsAdd />}
+            {role === "admin" && <PopupProductsAdd />}
           </div>
           <ul className="grid grid-cols-4 gap-4">
             {filteredProducts.map((product) => (
@@ -189,7 +207,7 @@ export default function Home() {
                 <p className="text-center">{product.weight}</p>
 
                 <div className="absolute top-0 right-0">
-                  {isAdmin ? (
+                  {role === "admin" ? (
                     <div className="flex items-center gap-2">
                       <PopupProductsEdit products={product} />
                       <Button
@@ -209,9 +227,11 @@ export default function Home() {
             ))}
           </ul>
         </section>
-        <div className="mb-6">
-          <Users />
-        </div>
+        {role === "admin" && (
+          <div className="mb-6">
+            <Users />
+          </div>
+        )}
       </main>
     </>
   );

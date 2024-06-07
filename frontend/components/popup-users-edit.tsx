@@ -22,6 +22,7 @@ import { Label } from "@/components/ui/label";
 import { EyeOff, Pencil } from "lucide-react";
 import { useState } from "react";
 import { User } from "../types/types";
+import toast from "react-hot-toast";
 
 interface PopupUserEditProps {
   user: User;
@@ -60,14 +61,18 @@ export const PopupUserEdit = ({ user }: PopupUserEditProps) => {
 
       const data = await response.json();
       if (data.success) {
-        alert("Usuario editado exitosamente");
-        window.location.reload();
+        // alert("Usuario editado exitosamente");
+        toast.success("Usuario editado exitosamente", { duration: 5000 });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       } else {
         alert("Error: " + data.error);
       }
     } catch (error) {
       console.error(error);
-      alert("Error al editar el usuario");
+      // alert("Error al editar el usuario");
+      toast.error("Error al editar el usuario");
     }
   };
 

@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 #[Route('/api/users', name: 'api_users')]
 class UserController extends AbstractController{
     
@@ -18,6 +17,7 @@ class UserController extends AbstractController{
 
     public function __construct(EntityManagerInterface $entityManager, string $userClass)
     {
+
         $this->entityManager = $entityManager;
         $this->userClass = $userClass;
     }
@@ -25,6 +25,7 @@ class UserController extends AbstractController{
     #[Route('', methods: ['GET'])]
     public function getUsers(): JsonResponse {
     $users = $this->entityManager->getRepository($this->userClass)->findAll();
+    // Convertir los usuarios a un arreglo de datos
     $userData = [];
 
     foreach ($users as $user) {
@@ -36,6 +37,7 @@ class UserController extends AbstractController{
         ];
     }
 
+    // Devolver los datos en formato JSON
     return $this->json($userData);
     }
 
@@ -52,17 +54,17 @@ class UserController extends AbstractController{
             $user = new User();
             $user->setUsername($username);
             $user->setEmail($email);
-            $user->setPassword($password);
             $user->setRole($role);
+            $user->setPassword($password);
 
-            // Persistir el usuario en la base de datos
+            // Guardar el usuario en la base de datos
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            return $this->json(['success' => true, 'message' => 'Usuario creado exitosamente'], Response::HTTP_CREATED);
+            // Devolver una respuesta exitosa en formato JSON a través de la API
+            return $this->json(['success' => true, 'message' => 'Usuario creado exitosamente']);
         } catch (\Exception $e) {
-            $this->logger->error('Error al crear el usuario: ' . $e->getMessage());
-            return $this->json(['error' => 'Error al crear el usuario'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->json(['error' => 'Error al crear el usuario']);
         }
     }
 

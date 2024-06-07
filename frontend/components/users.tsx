@@ -18,7 +18,7 @@ export default function Users() {
         return response.json();
       })
       .then((data) => {
-        console.log("Usuarios obtenidos:", data);
+        // console.log("Usuarios obtenidos:", data);
         setUsers(data);
       })
       .catch((error) => console.error("Error al obtener los usuarios:", error));

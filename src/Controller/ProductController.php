@@ -54,7 +54,7 @@ class ProductController extends AbstractController
                 $product->setImageUrl($newFilename);
             }
 
-            // Persistir el producto en la base de datos
+            // Guardar el producto en la base de datos
             $this->entityManager->persist($product);
             $this->entityManager->flush();
 
@@ -67,7 +67,9 @@ class ProductController extends AbstractController
 
     #[Route('', methods: ['GET'])]
     public function getProducts(Request $request): JsonResponse {
+        // Obtener los productos de la base de datos
         $products = $this->entityManager->getRepository($this->productClass)->findAll();
+        // Convertir los productos a un arreglo de datos
         $data = [];
         foreach ($products as $product) {
             $data[] = [
@@ -82,19 +84,24 @@ class ProductController extends AbstractController
                 'image_url' => $product->getImageUrl(),
             ];
         }
+        // Devolver los datos en formato JSON
         return $this->json($data);
     }
 
     #[Route('/{id}', methods: ['DELETE'])]
     public function deleteProduct(Request $request): JsonResponse {
+        // Obtener el ID del producto a eliminar
         $id = $request->get('id');
+        // Buscar el producto en la base de datos
         $product = $this->entityManager->getRepository($this->productClass)->find($id);
 
         if (!$product) {
             return $this->json(['error' => 'Producto no encontrado'], 404);
         }
 
+        // Eliminar el producto de la base de datos
         $this->entityManager->remove($product);
+        // Guardar los cambios en la base de datos
         $this->entityManager->flush();
 
         return $this->json(['success' => true, 'message' => 'Producto eliminado exitosamente']);
@@ -103,13 +110,16 @@ class ProductController extends AbstractController
     #[Route('/{id}', methods: ['PUT', 'HEAD'])]
     public function updateProduct($id, Request $request): JsonResponse {
         $id = $request->get('id');
+        // Obtener los datos del producto a editar
         $productData = json_decode($request->getContent(), true);
+        // Buscar el producto en la base de datos
         $product = $this->entityManager->getRepository($this->productClass)->find($id);
 
         if (!$product) {
             return $this->json(['error' => 'Producto no encontrado'], 404);
         }
 
+        // Actualizar los datos del producto con los datos recibidos
         $product->setName($productData['name']);
         $product->setBrand($productData['brand']);
         $product->setType($productData['type']);

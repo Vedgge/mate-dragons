@@ -3,17 +3,17 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { User } from "@/types/types";
-// import { PopupProductsEdit } from "./dialog-products-edit";
 import { Button } from "./ui/button";
-import { CircleX, Pencil } from "lucide-react";
-import { useEffect, useState } from "react";
+import { CircleAlert, CircleX } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
 import { PopupUserEdit } from "./popup-users-edit";
+import toast from "react-hot-toast";
+import { AuthContext } from "@/context/AuthContext";
 
 interface TableUsersProps {
   filteredUsers: User[];
@@ -21,10 +21,21 @@ interface TableUsersProps {
 
 export const TableUsers: React.FC<TableUsersProps> = ({ filteredUsers }) => {
   const [users, setUsers] = useState<User[]>([]);
+  const { decodedToken } = useContext(AuthContext);
 
   useEffect(() => {
-    setUsers(filteredUsers);
-  }, [filteredUsers]);
+    setUsers(
+      filteredUsers.filter((user) => user.username !== decodedToken.username)
+    );
+  }, [filteredUsers, decodedToken]);
+
+
+  const handleUserAccount = () => {
+    toast("Este es el usuario que estas usando!", {
+      icon: "👏",
+    });
+    console.log(decodedToken)
+  };
 
   const handleDeleteUser = async (id: number) => {
     try {
@@ -35,16 +46,18 @@ export const TableUsers: React.FC<TableUsersProps> = ({ filteredUsers }) => {
 
       const data = await response.json();
       if (data.success) {
-        alert("Usuario eliminado exitosamente");
+        // alert("Usuario eliminado exitosamente");
+        toast.success("Usuario eliminado exitosamente");
         setUsers((filteredUsers) =>
           filteredUsers.filter((user) => user.id !== id)
         );
       } else {
         alert("Error: " + data.error);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error:", error);
-      alert("Error al eliminar el usuario");
+      // alert("Error al eliminar el usuario");
+      toast.error("Error al eliminar el usuario" + error.name + error.message);
     }
   };
 
@@ -61,6 +74,20 @@ export const TableUsers: React.FC<TableUsersProps> = ({ filteredUsers }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
+        <TableRow key={0}>
+          <TableCell className="font-medium">{decodedToken.id}</TableCell>
+          <TableCell>{decodedToken.username}</TableCell>
+          <TableCell>{decodedToken.email}</TableCell>
+          <TableCell>{decodedToken.roles[0]}</TableCell>
+          <TableCell className="w-[150px] flex items-center gap-2">
+            <Button
+              onClick={handleUserAccount}
+              className="bg-green-500 hover:bg-green-700"
+            >
+              <CircleAlert className="w-6 h-6" />
+            </Button>
+          </TableCell>
+        </TableRow>
         {users.map((user) => (
           <TableRow key={user.id}>
             <TableCell className="font-medium">{user.id}</TableCell>

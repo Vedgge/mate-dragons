@@ -23,6 +23,7 @@ import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { Textarea } from "./ui/textarea";
 import { Product } from "../types/types";
+import toast from "react-hot-toast";
 
 interface PopupProductsEditProps {
   products: Product;
@@ -116,14 +117,18 @@ export const PopupProductsEdit = ({ products }: PopupProductsEditProps) => {
 
       const data = await response.json();
       if (data.success) {
-        alert("Producto editado exitosamente");
-        window.location.reload();
+        // alert("Producto editado exitosamente");
+        toast.success("Producto editado exitosamente", { duration: 5000 });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       } else {
         alert("Error: " + data.error);
       }
     } catch (error) {
       console.error(error);
-      alert("Error al editar el producto");
+      // alert("Error al editar el producto");
+      toast.error("Error al editar el producto");
     }
   };
 
