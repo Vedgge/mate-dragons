@@ -45,7 +45,7 @@ export function PopupUsersAdd() {
       const data = await response.json();
       if (data.success) {
         // alert("Usuario creado exitosamente");
-        toast.success("Usuario creado exitosamente", { duration: 5000 });
+        toast.success("Usuario creado exitosamente", { duration: 3000 });
         setTimeout(() => {
           window.location.reload();
         }, 3000);

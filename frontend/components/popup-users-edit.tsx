@@ -62,7 +62,7 @@ export const PopupUserEdit = ({ user }: PopupUserEditProps) => {
       const data = await response.json();
       if (data.success) {
         // alert("Usuario editado exitosamente");
-        toast.success("Usuario editado exitosamente", { duration: 5000 });
+        toast.success("Usuario editado exitosamente", { duration: 3000 });
         setTimeout(() => {
           window.location.reload();
         }, 3000);

@@ -118,7 +118,7 @@ export const PopupProductsEdit = ({ products }: PopupProductsEditProps) => {
       const data = await response.json();
       if (data.success) {
         // alert("Producto editado exitosamente");
-        toast.success("Producto editado exitosamente", { duration: 5000 });
+        toast.success("Producto editado exitosamente", { duration: 3000 });
         setTimeout(() => {
           window.location.reload();
         }, 3000);

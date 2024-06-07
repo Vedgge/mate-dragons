@@ -47,10 +47,9 @@ class ProductController extends AbstractController
             // Manejo de la imagen
             if ($uploadedFile) {
                 $newFilename = uniqid() . '.' . $uploadedFile->guessExtension();
-                $uploadedFile->move(
-                    $this->getParameter('kernel.project_dir') . '/frontend/public/uploads',
-                    $newFilename
-                );
+                $projectRoot = dirname(__DIR__, 3); // Obtener la ruta absoluta de la raíz del proyecto
+                $uploadsDir = $projectRoot . '/frontend/public/uploads'; // Construir la ruta completa para la carpeta de subida de archivos
+                $uploadedFile->move($uploadsDir, $newFilename);
                 $product->setImageUrl($newFilename);
             }
 
