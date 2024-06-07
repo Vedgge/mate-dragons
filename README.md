@@ -4,7 +4,7 @@
 
 ## Description
 
-Mate & Dragons is an e-commerce platform designed to provide a seamless shopping experience of yerba mate for users. It features a clean and responsive interface, advanced filtering options, and integration with an API to fetch product data dynamically.
+Mate & Dragons is an e-commerce platform designed to provide a seamless shopping experience of yerba mate for users. It features a clean and responsive interface, advanced filtering options, and integration with an API to fetch product data dynamically. Click on the youtube playlist below to see all the features!
 
 [![Preview Features](./frontend/public/user-pov.gif)](https://www.youtube.com/playlist?list=PLgjrSICgq_XWWjXJXjTk6b9Ul5wGD5dR0)
 
