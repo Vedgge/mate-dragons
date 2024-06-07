@@ -1030,3 +1030,13 @@ a93213,::1,GET,http://localhost:8000/api/users,1717778387,,200,request
 58139b,::1,GET,http://localhost:8000/api/products,1717778388,,200,request
 e069f4,::1,GET,http://localhost:8000/api/products,1717778388,,200,request
 4be603,::1,GET,http://localhost:8000/api/products,1717778388,,200,request
+133988,::1,OPTIONS,http://localhost:8000/api/products/13,1717779489,,200,request
+dae3dc,::1,PUT,http://localhost:8000/api/products/13,1717779489,,200,request
+3af09f,::1,GET,http://localhost:8000/api/products,1717779493,,200,request
+27eadd,::1,GET,http://localhost:8000/api/users,1717779493,,200,request
+784af2,::1,GET,http://localhost:8000/api/products,1717779494,,200,request
+7a17a4,::1,GET,http://localhost:8000/api/users,1717779494,,200,request
+2d4235,::1,GET,http://localhost:8000/api/products,1717779495,,200,request
+99d874,::1,GET,http://localhost:8000/api/products,1717779495,,200,request
+a30ffb,::1,GET,http://localhost:8000/api/users,1717779537,,200,request
+e58fe1,::1,GET,http://localhost:8000/api/products,1717779537,,200,request
