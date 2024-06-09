@@ -93,6 +93,14 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
 Open your browser and navigate to http://localhost:3000 for the frontend.
 Access the backend API at http://localhost:8000/api/...
 
+### Future Developments and Potential Improvements
+- Better styling.
+- Encrypted Passwords.
+- Registration form.
+- See more details about the products.
+- Add products to a wish list and a cart.
+- More search features and filters.
+
 ### License
 This project is licensed under the MIT License. See the LICENSE file for more details
 _____________________________________________________________________________________
