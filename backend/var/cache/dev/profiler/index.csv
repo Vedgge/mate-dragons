@@ -1203,3 +1203,15 @@ cd4623,::1,POST,http://localhost:8000/api/login,1717797497,,200,request
 9883a0,::1,POST,http://localhost:8000/api/login,1717797509,,200,request
 f0287f,::1,GET,http://localhost:8000/api/users,1717797509,,200,request
 42fc0c,::1,GET,http://localhost:8000/api/users,1717797509,,200,request
+6f96c4,::1,GET,http://localhost:8000/api/users,1717809305,,200,request
+b2262d,::1,GET,http://localhost:8000/api/products,1717809306,,200,request
+367a0a,::1,GET,http://localhost:8000/api/products,1717809307,,200,request
+6777cb,::1,GET,http://localhost:8000/api/products,1717809308,,200,request
+eb8540,::1,GET,http://localhost:8000/api/users,1717809308,,200,request
+d047a2,::1,GET,http://localhost:8000/api/users,1717980235,981f84,500,request
+981f84,::1,GET,http://localhost:8000/api/users,1717980235,,500,request
+ddd247,::1,GET,http://localhost:8000/api/products,1717980242,,200,request
+1f4737,::1,GET,http://localhost:8000/api/products,1717980243,,200,request
+133fb3,::1,GET,http://localhost:8000/api/users,1717980249,,200,request
+c8960f,::1,GET,http://localhost:8000/api/products,1717980250,,200,request
+489c10,::1,GET,http://localhost:8000/api/products,1717980251,,200,request
