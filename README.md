@@ -40,7 +40,6 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
 - **MySQL:** Database management system.
 - **JWT:** JSON Web Tokens for secure user authentication.
 - **Doctrine ORM:** Object-Relational Mapping for database management.
-- **SwiftMailer:** For sending email notifications.
 
 ### Development Tools
 
