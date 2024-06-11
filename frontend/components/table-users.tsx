@@ -39,7 +39,7 @@ export const TableUsers: React.FC<TableUsersProps> = ({ filteredUsers }) => {
   const handleDeleteUser = async (id: number) => {
     try {
       const response = await fetch(
-        `mate-dragons.railway.internal/api/users/${id}`,
+        `http://mate-dragons.railway.internal/api/users/${id}`,
         {
           method: "DELETE",
           body: `id=${id}`,

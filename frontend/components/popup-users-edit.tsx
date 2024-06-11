@@ -49,7 +49,7 @@ export const PopupUserEdit = ({ user }: PopupUserEditProps) => {
 
     try {
       const response = await fetch(
-        `mate-dragons.railway.internal/api/users/${user.id}`,
+        `http://mate-dragons.railway.internal/api/users/${user.id}`,
         {
           method: "PUT",
           headers: {

@@ -96,7 +96,7 @@ export function PopupProductsAdd() {
 
     try {
       const response = await fetch(
-        "mate-dragons.railway.internal/api/products",
+        "http://mate-dragons.railway.internal/api/products",
         {
           method: "POST",
           body: formDataProduct,
