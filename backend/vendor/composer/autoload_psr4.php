@@ -6,7 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
+    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Twig\\Extra\\TwigExtraBundle\\' => array($vendorDir . '/twig/extra-bundle'),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
@@ -127,7 +127,7 @@ return array(
     'Amp\\Process\\' => array($vendorDir . '/amphp/process/lib'),
     'Amp\\Parser\\' => array($vendorDir . '/amphp/parser/src'),
     'Amp\\Http\\Client\\' => array($vendorDir . '/amphp/http-client/src'),
-    'Amp\\Http\\' => array($vendorDir . '/amphp/hpack/src', $vendorDir . '/amphp/http/src'),
+    'Amp\\Http\\' => array($vendorDir . '/amphp/http/src', $vendorDir . '/amphp/hpack/src'),
     'Amp\\Dns\\' => array($vendorDir . '/amphp/dns/lib'),
     'Amp\\Cache\\' => array($vendorDir . '/amphp/cache/lib'),
     'Amp\\ByteStream\\' => array($vendorDir . '/amphp/byte-stream/lib'),

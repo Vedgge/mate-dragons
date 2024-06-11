@@ -3,7 +3,7 @@
         'name' => 'symfony/skeleton',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b45ade8869112d130ace20e87e359c9627f1151f',
+        'reference' => '6f892ec5ae3c44f202946a6abf99e0f858182c00',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -628,8 +628,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '3.0.0',
-                1 => '1.0|2.0|3.0',
+                0 => '1.0|2.0|3.0',
+                1 => '3.0.0',
             ),
         ),
         'psr/simple-cache-implementation' => array(
@@ -1370,7 +1370,7 @@
         'symfony/skeleton' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b45ade8869112d130ace20e87e359c9627f1151f',
+            'reference' => '6f892ec5ae3c44f202946a6abf99e0f858182c00',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
