@@ -258,7 +258,7 @@
     <parameter key="nelmio_cors.map" type="collection">
       <parameter key="^/api/" type="collection">
         <parameter key="allow_origin" type="collection">
-          <parameter>http://localhost:3000</parameter>
+          <parameter>%env(CORS_ALLOW_ORIGIN)%</parameter>
         </parameter>
         <parameter key="allow_headers" type="collection">
           <parameter>content-type</parameter>
@@ -277,7 +277,7 @@
     </parameter>
     <parameter key="nelmio_cors.defaults" type="collection">
       <parameter key="allow_origin" type="collection">
-        <parameter>http://localhost:3000</parameter>
+        <parameter>%env(CORS_ALLOW_ORIGIN)%</parameter>
       </parameter>
       <parameter key="allow_credentials">true</parameter>
       <parameter key="allow_headers" type="collection">
