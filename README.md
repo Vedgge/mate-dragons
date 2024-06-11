@@ -92,7 +92,9 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
    ```bash
    cd ../backend
    symfony server:start
-8. Log in as an admin using username: admin1, password: admin1
+8. Log in as an admin using the following credentials:
+   - Username: admin1
+   - Password: admin1
 
 ### Usage
 
