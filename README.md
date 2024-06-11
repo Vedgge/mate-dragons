@@ -77,6 +77,7 @@ Mate & Dragons is an e-commerce platform designed to provide a seamless shopping
    composer install
 4. Ensure the Railway cloud database is running and update the .env file in the backend folder with the correct environment variables (DATABASE_URL=mysql://username:password@host:port/database_name
 ). Alternatively, if you're using a local MySQL server, ensure it is running and update the DATABASE_URL in the .env file accordingly.
+
 5. Run the Database migrations from the Backend 
    ```bash
    symfony console doctrine:migrations:migrate
