@@ -38,7 +38,7 @@ export function PopupUsersAdd() {
 
     try {
       const response = await fetch(
-        "http://mate-dragons.railway.internal/api/users",
+        "https://mate-dragons-production.up.railway.app/api/users",
         {
           method: "POST",
           body: formData,

@@ -10,7 +10,7 @@ export default function Users() {
   const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
-    fetch("http://mate-dragons.railway.internal/api/users")
+    fetch("https://mate-dragons-production.up.railway.app/api/users")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error en la red");

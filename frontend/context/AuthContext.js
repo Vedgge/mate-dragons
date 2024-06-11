@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password) => {
     try {
       const response = await fetch(
-        "http://mate-dragons.railway.internal/api/login",
+        "https://mate-dragons-production.up.railway.app/api/login",
         {
           method: "POST",
           headers: {
