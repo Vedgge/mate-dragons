@@ -1259,3 +1259,9 @@ b7ce5e,::1,GET,http://localhost:8000/api/products,1718072240,,200,request
 ab0335,::1,GET,http://localhost:8000/api/products,1718072243,,200,request
 6429fd,::1,GET,http://localhost:8000/api/users,1718072244,,200,request
 df6e3d,::1,GET,http://localhost:8000/api/users,1718072246,,200,request
+517915,::1,GET,http://localhost:8000/api/users,1718072725,,200,request
+5068b9,::1,GET,http://localhost:8000/api/products,1718072726,,200,request
+cfe60e,::1,GET,http://localhost:8000/api/users,1718072728,,200,request
+712aa2,::1,GET,http://localhost:8000/api/products,1718072729,,200,request
+42e488,::1,GET,http://localhost:8000/api/products,1718072730,,200,request
+46af22,::1,GET,http://localhost:8000/api/products,1718072732,,200,request
