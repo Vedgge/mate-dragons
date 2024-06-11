@@ -95,16 +95,13 @@ export function PopupProductsAdd() {
     }
 
     try {
-      const response = await fetch(
-        "https://mate-dragons-production.up.railway.app/api/products",
-        {
-          method: "POST",
-          body: formDataProduct,
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://localhost:8000/api/products", {
+        method: "POST",
+        body: formDataProduct,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
       const data = await response.json();
       if (response.ok) {
