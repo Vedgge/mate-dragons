@@ -11,7 +11,7 @@ module.exports = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://localhost:8000/api/:path*", // Ruta de la API de Symfony
+        destination: "mate-dragons.railway.internal/api/:path*", // Ruta de la API de Symfony
       },
     ];
   },

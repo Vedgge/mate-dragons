@@ -105,7 +105,7 @@ export const PopupProductsEdit = ({ products }: PopupProductsEditProps) => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/products/${products.id}`,
+        `mate-dragons.railway.internal/api/products/${products.id}`,
         {
           method: "PUT",
           headers: {

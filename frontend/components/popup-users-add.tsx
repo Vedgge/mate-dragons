@@ -37,7 +37,7 @@ export function PopupUsersAdd() {
     formData.append("role", role);
 
     try {
-      const response = await fetch("http://localhost:8000/api/users", {
+      const response = await fetch("mate-dragons.railway.internal/api/users", {
         method: "POST",
         body: formData,
       });

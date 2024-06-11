@@ -86,7 +86,7 @@ export function PopupProductsAdd() {
     formDataProduct.append("name", name);
     formDataProduct.append("brand", brand);
     formDataProduct.append("type", type);
-    formDataProduct.append("weight", weight); 
+    formDataProduct.append("weight", weight);
     formDataProduct.append("description", description);
     formDataProduct.append("price", price.toString()); // Convertir a cadena
     formDataProduct.append("stock", stock.toString()); // Convertir a cadena
@@ -95,13 +95,16 @@ export function PopupProductsAdd() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/products", {
-        method: "POST",
-        body: formDataProduct,
-        headers: {
-          Accept: "application/json",
-        },
-      });
+      const response = await fetch(
+        "mate-dragons.railway.internal/api/products",
+        {
+          method: "POST",
+          body: formDataProduct,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {

@@ -29,20 +29,22 @@ export const TableUsers: React.FC<TableUsersProps> = ({ filteredUsers }) => {
     );
   }, [filteredUsers, decodedToken]);
 
-
   const handleUserAccount = () => {
     toast("Este es el usuario que estas usando!", {
       icon: "👏",
     });
-    console.log(decodedToken)
+    console.log(decodedToken);
   };
 
   const handleDeleteUser = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/users/${id}`, {
-        method: "DELETE",
-        body: `id=${id}`,
-      });
+      const response = await fetch(
+        `mate-dragons.railway.internal/api/users/${id}`,
+        {
+          method: "DELETE",
+          body: `id=${id}`,
+        }
+      );
 
       const data = await response.json();
       if (data.success) {

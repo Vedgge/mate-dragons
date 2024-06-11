@@ -28,7 +28,7 @@ const UniqueSelects = ({
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/products")
+    fetch("mate-dragons.railway.internal/api/products")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error:", error));
@@ -84,7 +84,7 @@ export default function Home() {
   const { role, logout, decodedToken } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/products")
+    fetch("mate-dragons.railway.internal/api/products")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -111,10 +111,13 @@ export default function Home() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/products/${id}`, {
-        method: "DELETE",
-        body: `id=${id}`,
-      });
+      const response = await fetch(
+        `mate-dragons.railway.internal/api/products/${id}`,
+        {
+          method: "DELETE",
+          body: `id=${id}`,
+        }
+      );
 
       const data = await response.json();
       if (data.success) {
